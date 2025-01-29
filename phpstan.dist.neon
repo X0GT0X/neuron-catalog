@@ -1,0 +1,9 @@
+parameters:
+    level: max
+    checkUninitializedProperties: true
+    paths:
+        - config/
+        - src/
+        - tests/
+    excludePaths:
+        - src/Infrastructure/Migration/*

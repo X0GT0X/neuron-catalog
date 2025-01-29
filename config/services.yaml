@@ -19,6 +19,24 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+                
+    Neuron\BuildingBlocks\Infrastructure\Serializer\BaseId\BaseIdNormalizer:
+        arguments:
+            $normalizer: '@serializer.normalizer.object'
+        tags:
+            - { name: serializer.normalizer }
+
+    Neuron\BuildingBlocks\Infrastructure\Serializer\DomainEvent\DomainEventNormalizer:
+        arguments:
+            $normalizer: '@serializer.normalizer.object'
+        tags:
+            - { name: serializer.normalizer }
+
+    Neuron\BuildingBlocks\Integration\IntegrationEventNormalizer:
+        arguments:
+            $normalizer: '@serializer.normalizer.object'
+        tags:
+            - { name: serializer.normalizer }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

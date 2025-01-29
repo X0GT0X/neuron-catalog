@@ -38,10 +38,7 @@ down: ## Stop the docker hub
 logs: ## Show live logs
 	@$(DOCKER_COMP) logs --tail=0 --follow
 
-sh: ## Connect to the FrankenPHP container
-	@$(PHP_CONT) sh
-
-bash: ## Connect to the FrankenPHP container via bash so up and down arrows go to previous commands
+shell: ## Connect to the FrankenPHP container via bash
 	@$(PHP_CONT) bash
 
 test: ## Start tests with phpunit, pass the parameter "c=" to add options to phpunit, example: make test c="--group e2e --stop-on-failure"
@@ -65,3 +62,13 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 
 cc: c=c:c ## Clear the cache
 cc: sf
+
+php-cs:
+	# Adding PHP_CS_FIXER_IGNORE_ENV=1 until PHP 8.4 support is added
+	@$(DOCKER_COMP) exec -e PHP_CS_FIXER_IGNORE_ENV=1 php vendor/bin/php-cs-fixer fix -v --allow-risky=yes
+
+php-stan:
+	$(PHP_CONT) vendor/bin/phpstan analyse -c phpstan.dist.neon
+
+php-stan-baseline:
+	$(PHP_CONT) vendor/bin/phpstan analyse --generate-baseline
