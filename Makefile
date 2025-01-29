@@ -63,6 +63,9 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 cc: c=c:c ## Clear the cache
 cc: sf
 
+database:
+	@$(SYMFONY) doctrine:database:create
+
 php-cs:
 	# Adding PHP_CS_FIXER_IGNORE_ENV=1 until PHP 8.4 support is added
 	@$(DOCKER_COMP) exec -e PHP_CS_FIXER_IGNORE_ENV=1 php vendor/bin/php-cs-fixer fix -v --allow-risky=yes
