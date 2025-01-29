@@ -1,6 +1,7 @@
 # Development environment override
 services:
   php:
+    container_name: neuron-catalog-php
     build:
       context: .
       target: frankenphp_dev
@@ -11,6 +12,13 @@ services:
       # If you develop on Mac or Windows you can remove the vendor/ directory
       #  from the bind-mount for better performance by enabling the next line:
       #- /app/vendor
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.catalog.rule=Host(`catalog.neuron.localhost`)"
+      - "traefik.http.routers.catalog.tls=true"
+      - "traefik.http.routers.catalog.entrypoints=http,https"
+    networks:
+      - neuron
     environment:
       MERCURE_EXTRA_DIRECTIVES: demo
       # See https://xdebug.org/docs/all_settings#mode
@@ -22,3 +30,7 @@ services:
 
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
+
+networks:
+  neuron:
+    external: true

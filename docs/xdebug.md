@@ -11,6 +11,10 @@ On Linux and Mac:
 ```
 XDEBUG_MODE=debug docker compose up -d
 ```
+or
+```
+make up-with-xdebug
+```
 
 On Windows:
 
@@ -24,9 +28,9 @@ First, [create a PHP debug remote server configuration](https://www.jetbrains.co
 
 1. In the `Settings/Preferences` dialog, go to `PHP | Servers`
 2. Create a new server:
-   * Name: `symfony` (or whatever you want to use for the variable `PHP_IDE_CONFIG`)
-   * Host: `localhost` (or the one defined using the `SERVER_NAME` environment variable)
-   * Port: `443`
+   * Name: `catalog` (or whatever you want to use for the variable `PHP_IDE_CONFIG`)
+   * Host: `catalog.neuron.localhost` (or the one defined using the `SERVER_NAME` environment variable)
+   * Port: `80`
    * Debugger: `Xdebug`
    * Check `Use path mappings`
    * Absolute path on the server: `/app`
