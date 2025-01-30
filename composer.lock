@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e7fded9cabe8c38fc97ac7445cfec23",
+    "content-hash": "276fc2960ec6cbb587727ea3cd731a9f",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1325,11 +1325,11 @@
         },
         {
             "name": "neuron/building-blocks",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/X0GT0X/neuron-building-blocks.git",
-                "reference": "396d0a3a51f35513e3a31dc41528a7645b40d737"
+                "reference": "25dce3b8a8b6f8fb323efd4fbb3a7d914d20dbba"
             },
             "require": {
                 "php": ">=8.4",
@@ -1403,7 +1403,7 @@
                 }
             ],
             "description": "Building blocks for Neuron microservices",
-            "time": "2025-01-29T09:08:34+00:00"
+            "time": "2025-01-30T11:00:19+00:00"
         },
         {
             "name": "psr/cache",
