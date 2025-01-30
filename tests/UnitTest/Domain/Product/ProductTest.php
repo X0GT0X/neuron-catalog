@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\UnitTest\Domain\Product;
 
-class ProductTest
+use App\Tests\UnitTest\UnitTestCase;
+
+class ProductTest extends UnitTestCase
 {
 }

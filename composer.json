@@ -86,6 +86,10 @@
         "friendsofphp/php-cs-fixer": "^3.68",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.22",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^2.1"
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5",
+        "symfony/browser-kit": "7.2.*",
+        "symfony/css-selector": "7.2.*",
+        "symfony/phpunit-bridge": "^7.2"
     }
 }
