@@ -66,6 +66,23 @@ cc: sf
 database:
 	@$(SYMFONY) doctrine:database:create
 
+migrations-diff:
+	@$(SYMFONY) doctrine:migrations:diff
+
+migrations-migrate:
+	@$(SYMFONY) d:m:m
+
+## —— Workers 🚀 ——————————————————————————————————————————————————————————————
+outbox-worker-start:
+	@$(SYMFONY) messenger:consume outbox -vv
+
+inbox-worker-start:
+	@$(SYMFONY) messenger:consume inbox -vv
+
+integration-events-worker-start:
+	@$(SYMFONY) messenger:consume async --queues=gateway
+
+## —— Tools 🚀 ——————————————————————————————————————————————————————————————
 php-cs:
 	# Adding PHP_CS_FIXER_IGNORE_ENV=1 until PHP 8.4 support is added
 	@$(DOCKER_COMP) exec -e PHP_CS_FIXER_IGNORE_ENV=1 php vendor/bin/php-cs-fixer fix -v --allow-risky=yes

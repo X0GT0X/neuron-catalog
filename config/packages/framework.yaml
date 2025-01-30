@@ -1,6 +1,10 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
+    
+    http_method_override: false
+    handle_all_throwables: true
+    error_controller: \App\UserInterface\Controller\ErrorController
 
     # Note that the session will be started ONLY if you read or write from it.
     session: true
