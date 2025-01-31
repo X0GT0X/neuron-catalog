@@ -13,8 +13,8 @@ final class NewProductAddedDomainEvent extends DomainEventBase
 {
     public function __construct(
         public readonly ProductId $productId,
-        public readonly string $name,
-        public readonly string $sku,
+        public readonly string $productName,
+        public readonly string $productSku,
         ?Uuid $id = null,
         ?\DateTimeImmutable $occurredOn = null
     ) {
@@ -24,16 +24,16 @@ final class NewProductAddedDomainEvent extends DomainEventBase
     /**
      * @param array{
      *     productId: array{value: string},
-     *     name: string,
-     *     sku: string
+     *     productName: string,
+     *     productSku: string
      * } $data
      */
     public static function from(Uuid $id, \DateTimeImmutable $occurredOn, array $data): DomainEventInterface
     {
         return new self(
             new ProductId($data['productId']['value']),
-            $data['name'],
-            $data['sku'],
+            $data['productName'],
+            $data['productSku'],
             $id,
             $occurredOn,
         );

@@ -32,7 +32,7 @@ abstract class UnitTestCase extends TestCase
         $this->assertContains(
             $domainEventType,
             \array_map(
-                static fn (DomainEventInterface $domainEvent) => \get_class($domainEvent),
+                static fn (DomainEventInterface $domainEvent) => $domainEvent::class,
                 $domainEvents
             ),
             \sprintf('%s event not published', $domainEventType)
@@ -53,9 +53,9 @@ abstract class UnitTestCase extends TestCase
             $testDelegate();
         } catch (BusinessRuleValidationException $exception) {
             $this->assertInstanceOf(
-                expected: $businessRuleType,
-                actual: $exception->getBrokenRule(),
-                message: \sprintf('Expected %s broken rule', $businessRuleType),
+                $businessRuleType,
+                $exception->getBrokenRule(),
+                \sprintf('Expected %s broken rule', $businessRuleType),
             );
 
             $this->assertEquals($expectedMessage, $exception->getMessage());

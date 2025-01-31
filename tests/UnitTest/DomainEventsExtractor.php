@@ -19,9 +19,7 @@ class DomainEventsExtractor
         /** @var DomainEventInterface[] $domainEvents */
         $domainEvents = [];
 
-        if ($aggregate->getDomainEvents() !== null) {
-            \array_push($domainEvents, ...$aggregate->getDomainEvents());
-        }
+        \array_push($domainEvents, ...$aggregate->getDomainEvents());
 
         $ref = new \ReflectionClass($aggregate);
 
@@ -53,16 +51,25 @@ class DomainEventsExtractor
     /** @throws \ReflectionException */
     private static function isEntity(\ReflectionProperty $property): bool
     {
-        if ($property->getType()?->isBuiltin()) {
+        /** @var \ReflectionNamedType|null $propertyType */
+        $propertyType = $property->getType();
+
+        if ($propertyType?->isBuiltin()) {
             return false;
         }
 
-        $propertyRef = new \ReflectionClass($property->getType()?->getName());
+        /** @var class-string<object> $propertyTypeName */
+        $propertyTypeName = $propertyType?->getName();
+        $propertyRef = new \ReflectionClass($propertyTypeName);
 
-        return $propertyRef->isSubclassOf(Entity::class);
+        return $propertyRef->isSubclassOf(Entity::class); // @phpstan-ignore-line
     }
 
-    /** @return \ReflectionProperty[] */
+    /**
+     * @param \ReflectionClass<Entity> $class
+     *
+     * @return \ReflectionProperty[]
+     */
     private static function getAllClassProperties(\ReflectionClass $class): array
     {
         /** @var \ReflectionProperty[] $properties */
