@@ -6,6 +6,7 @@
          backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -22,8 +23,9 @@
         </testsuite>
     </testsuites>
 
-    <coverage includeUncoveredFiles="false"/>
+<!--    <coverage includeUncoveredFiles="false"/>-->
 
     <extensions>
+        <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension" />
     </extensions>
 </phpunit>

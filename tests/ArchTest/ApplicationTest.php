@@ -22,7 +22,7 @@ class ApplicationTest
     public function testThat_Commands_ShouldExtendAbstractCommand(): Rule
     {
         return PHPat::rule()
-            ->classes(Selector::classname('/^App\\Application\\.+\\.+\\.+Command', true))
+            ->classes(Selector::classname('/^App\Application\.+\.+\.+Command', true))
             ->shouldExtend()
             ->classes(Selector::classname(AbstractCommand::class));
     }

@@ -6,9 +6,12 @@ namespace App\UserInterface\Controller\Product;
 
 use App\Application\Contract\CatalogModuleInterface;
 use App\Application\Product\AddNewProduct\AddNewProductCommand;
+use App\Application\Product\GetProduct\GetProductQuery;
 use App\UserInterface\Controller\Product\Request\AddNewProductRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Uid\Uuid;
 
 final readonly class ProductController
 {
@@ -31,5 +34,13 @@ final readonly class ProductController
         return new JsonResponse([
             'id' => $productId,
         ]);
+    }
+
+    #[Route('products/{productId}', methods: ['GET'])]
+    public function getById(Uuid $productId): JsonResponse
+    {
+        $product = $this->catalogModule->executeQuery(new GetProductQuery($productId));
+
+        return new JsonResponse($product, null === $product ? Response::HTTP_NOT_FOUND : Response::HTTP_OK);
     }
 }

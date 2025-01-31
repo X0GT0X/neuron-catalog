@@ -25,7 +25,7 @@ class DomainTest
     public function testThat_DomainEvents_ShouldExtendDomainEventBase(): Rule
     {
         return PHPat::rule()
-            ->classes(Selector::classname('/^App\\Domain\\.+\\Event\\.+DomainEvent', true))
+            ->classes(Selector::classname('/^App\Domain\.+\Event\.+DomainEvent', true))
             ->shouldExtend()
             ->classes(Selector::classname(DomainEventBase::class));
     }
@@ -33,7 +33,7 @@ class DomainTest
     public function testThat_BusinessRules_ShouldExtendAbstractBusinessRule(): Rule
     {
         return PHPat::rule()
-            ->classes(Selector::classname('/^App\\Domain\\.+\\Rule\\.+Rule', true))
+            ->classes(Selector::classname('/^App\Domain\.+\Rule\.+Rule', true))
             ->shouldExtend()
             ->classes(Selector::classname(AbstractBusinessRule::class));
     }
